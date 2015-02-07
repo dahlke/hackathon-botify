@@ -1,0 +1,28 @@
+{
+    "name": "botify",
+    "version": "0.0.1",
+    "description": "i honestly don't even know",
+    "repository": "http://github.com/dahlke/botify",
+    "author": "Neil Dahlke",
+    "devDependencies": {
+        "browserify": "^5.10.0",
+        "gulp": "^3.8.7",
+        "jsxhint": "0.7.0",
+        "gulp-jshint": "^1.8.4",
+        "gulp-react": "^2.0.0",
+        "gulp-less": "^1.3.6",
+        "gulp-util": "^3.0.0",
+        "reactify": "^0.16.0",
+        "watchify": "^1.0.2",
+        "vinyl-source-stream": "^0.1.1"
+    },
+    "dependencies": {
+        "backbone": "1.1.2",
+        "font-awesome": "4.2.0",
+        "jquery": "2.1.1",
+        "lodash": "2.4.1",
+        "moment": "2.8.3",
+        "react": "0.12.2",
+        "underscore.string": "2.4.0"
+    }
+}
