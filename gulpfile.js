@@ -11,7 +11,7 @@ var less = require('gulp-less');
 var production = process.env.NODE_ENV === 'production';
 
 var compile_js = function(watch) {
-    var bundler = browserify('app.js', {
+    var bundler = browserify('router.js', {
         debug: !production,
         paths: ['./node_modules', './static/js'],
         cache: {},
@@ -47,9 +47,9 @@ var compile_js = function(watch) {
 var compile_less = function() {
     var path = require('path');
     gulp.task('less', function () {
-        gulp.src('./static/less/styles.less')
+        gulp.src('./static/styles/less/styles.less')
             .pipe(less())
-            .pipe(gulp.dest('./static/css'));
+            .pipe(gulp.dest('./static/styles'));
     });
 
 };
@@ -77,8 +77,8 @@ gulp.task('build', function() {
 
 gulp.task('watch', function() {
     // monitor less for changes
-    gulp.watch('./static/less/*.less', ['less']);
-    gulp.watch('./static/less/*/*.less', ['less']);
+    gulp.watch('./static/styles/less/*.less', ['less']);
+    gulp.watch('./static/styles/less/*/*.less', ['less']);
 
     // return the js bundler in watch mode
     return compile_js(true);
