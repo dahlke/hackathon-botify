@@ -1,10 +1,17 @@
 $(document).ready(function() {
     var SEEN = {};
     var QUEUE = [];
-    var STREAM = 151;
-    var last_update = 0;
     var BOTS = {};
+    var STREAM = 1;
+    var last_update = 0;
 
+    var male_voices = [ 10, 21, 31 ];
+    var female_voices = [ 0, 30, 38, 55 ];
+
+    function choice(elements) {
+        var i = Math.floor(Math.random() * elements.length);
+        return elements[i];
+    }
 
     function merge(msgs) {
         for (var i = 0; i < msgs.length; ++i) {
@@ -27,12 +34,6 @@ $(document).ready(function() {
         });
     }
 
-    function ping() {
-        call("stream/ping", { stream_id: STREAM, }, function(data) {
-            window.setTimeout(ping, 5000);
-        });
-    }
-
     function step() {
         call("stream/query", {
             stream_id: STREAM,
@@ -50,31 +51,59 @@ $(document).ready(function() {
 
     function say() {
         var msg = QUEUE.shift();
-        if (msg) {
+        if (msg && msg.text && msg.text !== "null" && msg.text.length < 140) {
             var bot = BOTS[msg.bot_id];
-            console.log(bot.name, msg.text);
-            var noises = new SpeechSynthesisUtterance(bot.name + " says: " + msg.text);
-            var voices = window.speechSynthesis.getVoices();
-            if (voices) {
-                noises.voice = voices[21];
+            var noises;
+
+            console.log(bot && bot.name, msg.text);
+
+            if (bot) {
+                if (Math.random() > 0.5) { msg.text = bot.name + " says: " + msg.text; }
+
+                noises = new SpeechSynthesisUtterance(msg.text);
+
+                if (!bot.voice) {
+                    var voices = window.speechSynthesis.getVoices();
+                    if (bot.sex === "male") {
+                        bot.voice = voices[choice(male_voices)];
+                    }
+                    else {
+                        bot.voice = voices[choice(female_voices)];
+                    }
+                }
+
+                noises.voice = bot.voice;
+
+                $('.talking-wrapper').show();
+                $('.talking-wrapper .name').text(bot.name);
+                $('.user-image img').attr("src", "/static/" + bot.photo_url);
+            } else {
+                noises = new SpeechSynthesisUtterance(msg.text);
+                $('.talking-wrapper').hide();
             }
+
             window.speechSynthesis.speak(noises);
-            noises.onend = say;
+            noises.onend = function() {
+                var next_time = Math.min(2, Math.max(0, Math.random() * 3));
+                console.log("Saying in ", next_time);
+                window.setTimeout(say, next_time * 1000)
+            };
         } else {
+            console.log("skipping", msg);
             window.setTimeout(say, 1000);
         }
     }
-
-    call("stream/add_bot", { "bot_id": 1, "stream_id": STREAM });
-    call("stream/add_bot", { "bot_id": 4, "stream_id": STREAM });
 
     function start(bots) {
         for (var i = 0; i < bots.length; ++i) {
             BOTS[bots[i].bot_id] = bots[i];
         }
-        step();
-        ping();
-        say();
+        var go = function() {
+            step();
+            say();
+        };
+        if (window.speechSynthesis.getVoices()) { go(); }
+        else { window.speechSynthesis.onvoiceschanged = go; }
     }
 
     call("bot/query", { }, start);
