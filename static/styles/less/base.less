@@ -1,10 +1,16 @@
 html {
     font-family: Helvetica Neue;
     height: 100%;
+
     body {
         height: 100%;
+
+        .container {
+            position: static;
+        }
+
         #container {
-            height: ~"calc(100% - 50px)";
+            height: ~"calc(100% - 75px)";
 
             .user-image {
                 height: 25px;
@@ -18,6 +24,18 @@ html {
                 img {
                     height: 100%;
                 }
+            }
+        }
+
+        h1, h2, h3, p, li {
+            color: #010101;
+        }
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                background-color: black;
             }
         }
     }

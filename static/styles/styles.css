@@ -1,3 +1,4 @@
+@import "../../../node_modules/cupcake-react-modal/Modal.css";
 /*!
  *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -2675,8 +2676,11 @@ html {
 html body {
   height: 100%;
 }
+html body .container {
+  position: static;
+}
 html body #container {
-  height: calc(100% - 50px);
+  height: calc(100% - 75px);
 }
 html body #container .user-image {
   height: 25px;
@@ -2690,14 +2694,138 @@ html body #container .user-image {
 html body #container .user-image img {
   height: 100%;
 }
-.chat-room {
-  height: 100%;
+html body h1,
+html body h2,
+html body h3,
+html body p,
+html body li {
+  color: #010101;
 }
-.chat-room .messages {
-  height: calc(100% - 115px);
+html body a {
+  text-decoration: none;
+}
+html body a:hover {
+  background-color: black;
+}
+.home-page ul {
+  list-style: none;
+}
+.home-page .logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+}
+.home-page .hero {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  color: #000000;
+  padding-top: 24px;
+  padding-bottom: 4%;
+}
+.home-page .hero h1 {
+  text-transform: uppercase;
+}
+.home-page .hero h1,
+.home-page .hero h2,
+.home-page .hero h3,
+.home-page .hero p {
+  text-align: center;
+}
+.home-page .hero .ul {
+  text-align: center;
+  font-size: 1.5em;
+  padding: 8px;
+  border-color: #bbbbbb;
+  border-width: 1px;
+  border-radius: 16px;
+}
+.home-page .hero .ul:hover {
+  background-color: #e9e9e9;
+}
+.home-page .hero li {
+  text-align: left;
+  margin-left: 12px;
+}
+.home-page .hero li img {
+  float: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  vertical-align: middle;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 125px;
+}
+.home-page .hero li:hover ul {
+  font-color: #ffffff !important;
+}
+.home-page .hero button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 28px;
+  margin-bottom: 20px;
+}
+.home-page .botlist {
+  text-align: left;
+  font-size: 1.5em;
+  border: none;
+}
+.home-page .botlist li {
+  padding: 12px;
+  /*border-style: solid;*/
+  border-color: #bbbbbb;
+  border-width: 1px;
+  border-radius: 8px;
+}
+.home-page .botlist li img {
+  float: auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  vertical-align: middle;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 125px;
+}
+.home-page .botlist li:hover {
+  background-color: #e9e9e9;
+  color: #ffffff;
+}
+.home-page .stickynav {
+  min-height: 112px;
+}
+.home-page .stickynav h1,
+.home-page .stickynav h2,
+.home-page .stickynav h3,
+.home-page .stickynav p {
+  text-align: center;
+}
+.home-page .stickynav button {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 24px;
+}
+.home-page #nav.affix {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-top: 18px;
+  background-color: #f9f9f9;
+}
+.home-page input[type="checkbox"],
+.home-page input[type="radio"] {
+  margin-right: 12px;
+  margin-left: 24px;
+}
+.stream {
+  position: relative;
+  height: calc(100% - 30px);
+}
+.stream .messages {
+  height: calc(100% - 135px);
   overflow-y: scroll;
 }
-.chat-room .input-row {
+.stream .input-row {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -2708,10 +2836,15 @@ html body #container .user-image img {
   border-bottom: 1px solid #ccc;
   margin-bottom: 10px;
   height: 50px;
+  text-transform: uppercase;
 }
 .header .logo {
   font-size: 24px;
   line-height: 50px;
+}
+.header .logo:hover {
+  background: #fff;
+  color: #007aff;
 }
 .header button {
   padding: 0 10px;
@@ -2724,28 +2857,34 @@ html body #container .user-image img {
 }
 .message {
   position: relative;
-  width: 100%;
+  width: calc(100% - 75px);
   display: inline-block;
   margin: 10px 0;
 }
 .message .name {
   position: absolute;
   font-size: 10px;
-  top: -10px;
+  top: -12px;
   color: #999;
-  margin-left: 15px;
+  left: 40px;
+}
+.message .user-image {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .message .text {
-  display: inline-block;
-  background-color: #007aff;
-  top: 5px;
   position: relative;
-  left: 7px;
+  display: inline-block;
+  top: 5px;
+  left: 37px;
+  background-color: #007aff;
   color: #fff;
   border-radius: 10px;
   padding: 3px 10px;
   font-size: 18px;
   font-weight: 300;
+  margin-bottom: 0;
 }
 .message .text .typing {
   top: 3px;
@@ -2759,9 +2898,25 @@ html body #container .user-image img {
   width: calc(100% - 100px);
   border-radius: 0 10px 10px 0;
 }
+.input-row .typing {
+  position: absolute;
+  left: 100px;
+  bottom: 0px;
+  font-size: 12px;
+  color: #aaa;
+}
 .user-pills {
   border-bottom: 1px solid #ccc;
   margin-bottom: 10px;
+}
+.user-pills button {
+  height: 34px;
+  line-height: 34px;
+  float: right;
+}
+.user-pills button.disabled {
+  cursor: not-allowed;
+  background-color: #eee;
 }
 .user-pills .user-pill {
   float: left;
@@ -2779,4 +2934,59 @@ html body #container .user-image img {
   display: inline-block;
   margin-left: 3px;
   cursor: pointer;
+}
+.user-pills .add-bots-tooltip {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 300px;
+  max-height: 300px;
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  z-index: 1000;
+}
+.user-pills .add-bots-tooltip ul {
+  list-style: none;
+  margin-bottom: 0;
+}
+.user-pills .add-bots-tooltip ul li {
+  margin: 1px;
+  padding: 5px 10px;
+  line-height: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.user-pills .add-bots-tooltip ul li img {
+  margin-right: 5px;
+}
+.user-pills .add-bots-tooltip ul li:hover {
+  background: #eee;
+}
+.modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1000000;
+}
+.modal-container .modal-content {
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  margin-left: -300px;
+  background: #fff;
+  width: 600px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 15px;
+}
+.modal-container .modal-content .modal-close {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 5px;
 }

@@ -1,2 +1,0 @@
-flask==0.10.0
-flask-restful==0.2.12

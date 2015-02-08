@@ -11,14 +11,20 @@ var Stream = Backbone.Collection.extend({
 
     comparator: 'updated',
 
+    bots: {},
+
     initialize: function(models, options) {
         this._create();
         this.bot_ids = _.map(options.bot_ids, function(id) { return parseInt(id); });
     },
 
-    ping: function() {
+    ping: function(stream) {
         $.ajax({
-            url: 'http://debateabot.com/api/ping',
+            url: 'http://debateabot.com/api/stream/ping',
+            dataType: 'json',
+            data: JSON.stringify({
+                stream_id: this.stream_id
+            }),
             success: function(data) {
                 console.log('ping!');
             },
@@ -60,8 +66,8 @@ var Stream = Backbone.Collection.extend({
                 updated_since: this._last_updated()
             }),
             success: function(data) {
-                console.log(data.length);
                 this.set(data, {remove: false});
+                this.trigger('change');
             }.bind(this),
             error: function(e) {
                 console.log('Unexpected error occured while adding the bot:', e);
@@ -79,15 +85,16 @@ var Stream = Backbone.Collection.extend({
                 bot_id: parseInt(bot_id)
             }),
             success: function(data) {
-                this.stream_id = data.stream_id;
-            },
+                this.bots[String(bot_id)] = true;
+                this.trigger('change');
+            }.bind(this),
             error: function(e) {
                 console.log('Unexpected error occured while adding the bot:', e);
             }
         });
     },
 
-    remove_bot: function() {
+    remove_bot: function(bot_id) {
         $.ajax({
             url: 'http://debateabot.com/api/stream/remove_bot',
             type: 'POST',
@@ -97,8 +104,9 @@ var Stream = Backbone.Collection.extend({
                 bot_id: bot_id
             }),
             success: function(data) {
-                this.stream_id = data.stream_id;
-            },
+                delete this.bots[String(bot_id)];
+                this.trigger('change');
+            }.bind(this),
             error: function(e) {
                 console.log('Unexpected error occured while removing the bot:', e);
             }

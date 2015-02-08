@@ -10,17 +10,13 @@ var Message = React.createClass({
     },
 
     render: function() {
-        var text = this.props.model.get('text') ? this.props.model.get('text') : (
-            <img className="typing" src="static/images/typing.svg" />
-        );
-
         var photo, name;
-
         if (this.props.bot) {
             name = this.props.bot.get('name');
-            photo = this.props.bot.get('photo_url')
+            photo = this.props.bot.get('photo_url');
         } else {
             name = "Me";
+            photo = "images/user.jpg";
         }
 
         return (
@@ -31,9 +27,9 @@ var Message = React.createClass({
                 <span className="name">
                     {name}
                 </span>
-                <span className="text">
-                    {text}
-                </span>
+                <p className="text">
+                    {this.props.model.get('text')}
+                </p>
             </div>
         );
     }

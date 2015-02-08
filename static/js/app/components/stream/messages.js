@@ -29,6 +29,9 @@ var Messages = React.createClass({
     render: function() {
         var messages = _.map(this.props.stream.models, function(m) {
             var bot = this.props.bots.get(m.get('bot_id'));
+            if (m.get('pending') > 0 ) {
+                return false;
+            }
             return <Message model={m} key={'message-' + m.cid} bot={bot} />;
         }, this);
 

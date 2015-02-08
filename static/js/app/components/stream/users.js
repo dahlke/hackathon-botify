@@ -1,14 +1,19 @@
 var React = require('react');
-var Backbone = require('backbone');
 var _ = require('lodash');
-
-var YEEZY = "http://wundergroundmusic.com/wp-content/uploads/2014/09/Kanye-West-750x400.jpg";
+var AvailableBots = require('app/components/stream/available_bots');
+var UserPill = require('app/components/stream/user_pill');
 
 var Users = React.createClass({
 
     propTypes: {
         // stream
         // bots
+    },
+
+    getInitialState: function() {
+        return {
+            show_tooltip: false
+        };
     },
 
     componentDidMount: function() {
@@ -20,47 +25,47 @@ var Users = React.createClass({
     },
 
     render: function() {
-        var ids = _.uniq(_.map(this.props.stream.models, function(m) {
-            return m.get('bot_id');
-        }, this));
+        var ids = _.keys(this.props.stream.bots);
 
         var users = _.map(ids, function(id) {
-            return id !== 'Me' ? this._user(id) : undefined;
+            var bot = this.props.bots.get(id);
+            return bot && id !== 'Me' ? <UserPill model={bot} stream={this.props.stream} /> : undefined;
         }, this);
+
+        var tooltip = this.state.show_tooltip ? <AvailableBots bots={this.props.bots} stream={this.props.stream} /> : undefined;
+        var button_class = 'add ' + (users.length >= 4 ? 'disabled' : '');
 
         return (
             <div className="user-pills twelve columns">
                 {users}
+                <button disabled={users.length >= 4} onClick={this._toggle_available} className={button_class}>
+                    <i className="fa fa-plus" /> bot
+                </button>
+                {tooltip}
             </div>
         );
     },
 
-    _user: function(bot_id) {
-        var bot = this.props.bots.get(bot_id);
-
-        if (!bot) {
-            return;
+    _toggle_available: function() {
+        if (_.keys(this.props.stream.bots).length < 4) {
+            this.setState({
+                show_tooltip: !this.state.show_tooltip
+            });
         }
-
-        return (
-            <div className="user-pill">
-                <div className="user-image">
-                    <img className="profile" src={'static/' + bot.get('photo_url')} />
-                </div>
-                {bot.get('name')}
-                <span className="remove" onClick={this._remove_user}>
-                    <i className="fa fa-close" />
-                </span>
-            </div>
-        );
     },
 
-    _remove_user: function() {
-        console.log('remove user');
+    _tooltip: function() {
+        var available = _.filter(this.props.bots.models, function(bot) {
+            return !this.props.stream.bots[bot.id];
+        }.bind(this));
     },
 
     _update: function() {
-        if (this.isMounted()) {
+        if (_.keys(this.props.stream.bots).length === 4) {
+            this.setState({
+                show_tooltip: false
+            });
+        } else if (this.isMounted()) {
             this.forceUpdate();
         }
     }

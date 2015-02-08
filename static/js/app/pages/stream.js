@@ -24,10 +24,10 @@ var ChatRoom = React.createClass({
     render: function() {
         // wait for this.props.stream.stream_id
         return (
-            <div className="chat-room row">
+            <div className="stream row">
                 <Users stream={this.props.stream} bots={this.props.bots} />
                 <Messages stream={this.props.stream} bots={this.props.bots} />
-                <Input stream={this.props.stream} />
+                <Input stream={this.props.stream} bots={this.props.bots} />
             </div>
         );
     },
@@ -37,11 +37,9 @@ var ChatRoom = React.createClass({
             this.props.stream.query();
         }.bind(this), 500);
 
-        /*
         this._ping_poller = setInterval(function() {
             this.props.stream.ping();
         }.bind(this), 30000);
-        */
     },
 
     _clear_pollers: function() {
