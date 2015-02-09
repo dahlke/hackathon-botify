@@ -2674,6 +2674,7 @@ html {
 }
 html body {
   height: 100%;
+  color: #222;
 }
 html body .container {
   position: static;
@@ -2715,22 +2716,25 @@ html body a:hover {
   margin-right: auto;
   width: 250px;
 }
+.home-page h1 {
+  text-transform: uppercase;
+}
+.home-page h4 {
+  color: #aaa;
+}
+.home-page h1,
+.home-page h2,
+.home-page h3,
+.home-page h4,
+.home-page p {
+  text-align: center;
+}
 .home-page .hero {
   position: relative;
   width: 80%;
   margin: 0 auto;
-  color: #000000;
   padding-top: 24px;
   padding-bottom: 4%;
-}
-.home-page .hero h1 {
-  text-transform: uppercase;
-}
-.home-page .hero h1,
-.home-page .hero h2,
-.home-page .hero h3,
-.home-page .hero p {
-  text-align: center;
 }
 .home-page .hero .ul {
   text-align: center;
@@ -2748,13 +2752,11 @@ html body a:hover {
   margin-left: 12px;
 }
 .home-page .hero li img {
-  float: auto;
   width: 40px;
   height: 40px;
   border-radius: 100%;
   vertical-align: middle;
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 125px;
+  margin-right: 5px;
 }
 .home-page .hero li:hover ul {
   font-color: #ffffff !important;
@@ -2765,6 +2767,27 @@ html body a:hover {
   margin-top: 28px;
   margin-bottom: 20px;
 }
+.home-page .large-bot {
+  display: inline-block;
+  text-align: center;
+  width: 33.33%;
+  color: #222;
+}
+.home-page .large-bot img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  vertical-align: middle;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 125px;
+}
+.home-page .large-bot .bot-name {
+  margin-top: 5px;
+  width: 100%;
+  display: block;
+  font-size: 24px;
+  line-height: 24px;
+}
 .home-page .botlist {
   text-align: left;
   font-size: 1.5em;
@@ -2772,10 +2795,12 @@ html body a:hover {
 }
 .home-page .botlist li {
   padding: 12px;
-  /*border-style: solid;*/
   border-color: #bbbbbb;
   border-width: 1px;
   border-radius: 8px;
+  border: 1px solid transparent;
+  color: #222;
+  cursor: pointer;
 }
 .home-page .botlist li img {
   float: auto;
@@ -2783,12 +2808,13 @@ html body a:hover {
   height: 60px;
   border-radius: 100%;
   vertical-align: middle;
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 125px;
+  margin-right: 10px;
 }
 .home-page .botlist li:hover {
-  background-color: #e9e9e9;
-  color: #ffffff;
+  border-color: #aaa;
+}
+.home-page .botlist li.selected {
+  background-color: #ddd;
 }
 .home-page .stickynav {
   min-height: 112px;
