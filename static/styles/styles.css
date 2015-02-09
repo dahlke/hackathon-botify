@@ -2864,12 +2864,11 @@ html body a:hover {
   text-transform: uppercase;
 }
 .header .logo {
-  font-size: 24px;
-  line-height: 50px;
+  margin-top: 12px;
+  display: inline-block;
 }
 .header .logo:hover {
   background: #fff;
-  color: #007aff;
 }
 .header button {
   padding: 0 10px;
@@ -2879,6 +2878,30 @@ html body a:hover {
 .header a {
   text-decoration: none;
   margin: 0 5px;
+}
+.header .header-share {
+  margin-top: 14px;
+  float: right;
+  width: 100px;
+  height: 30px;
+  overflow: hidden;
+}
+.header .header-share iframe {
+  width: 100px;
+  height: 30px;
+}
+.header .podcast {
+  float: right;
+  margin-top: 13px;
+}
+.header .podcast a {
+  color: #E5322F;
+}
+.header .podcast a:hover {
+  background-color: #fff;
+}
+.header .podcast a i {
+  margin-right: 3px;
 }
 .message {
   position: relative;
