@@ -2838,12 +2838,11 @@ html body a:hover {
   text-transform: uppercase;
 }
 .header .logo {
-  font-size: 24px;
-  line-height: 50px;
+  margin-top: 12px;
+  display: inline-block;
 }
 .header .logo:hover {
   background: #fff;
-  color: #007aff;
 }
 .header button {
   padding: 0 10px;
@@ -2853,6 +2852,12 @@ html body a:hover {
 .header a {
   text-decoration: none;
   margin: 0 5px;
+}
+.header .header-share {
+  margin-top: 14px;
+  float: right;
+  width: 120px;
+  height: 30px;
 }
 .message {
   position: relative;
