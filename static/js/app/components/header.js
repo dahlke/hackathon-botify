@@ -17,7 +17,7 @@ var Header = React.createClass({
                     <a href="https://twitter.com/share" className="twitter-share-button" data-text="I just talked to bots!" data-hashtags="comedyhackday,debate-a-bot">Tweet</a>
                 </div>
                 <a className="rewrite logo" href="">
-                    <img src="static/images/header_logo.png" />
+                    <img src="static/images/logo.svg" />
                 </a>
             </div>
         );
