@@ -45,7 +45,7 @@ var Stream = Backbone.Collection.extend({
                 text: text
             }),
             success: function(data) {
-                console.log('turn from opaque to solid', data);
+                console.log('Success!');
             },
             error: function(e) {
                 console.log('Unexpected error occured while appending the message:', e);

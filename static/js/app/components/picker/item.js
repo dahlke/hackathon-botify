@@ -20,8 +20,6 @@ var PickerListItem = React.createClass({
         var class_name = '';
         if (this.state.selected) {
             class_name += ' selected ';
-        } else if (this.props.num_selected > 2) {
-            class_name += ' disabled ';
         }
 
         return (
@@ -41,11 +39,9 @@ var PickerListItem = React.createClass({
     },
 
     _handle_click: function() {
-        if (this.props.num_selected < 3 || this.state.selected) {
-            this.setState({
-                selected: !this.state.selected
-            });
-        }
+        this.setState({
+            selected: !this.state.selected
+        });
         this.props.on_click && this.props.on_click();
     }
 

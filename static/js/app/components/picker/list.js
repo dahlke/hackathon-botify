@@ -69,7 +69,7 @@ var PickerList = React.createClass({
             return v.selected() ? v.get_id() : null;
         }));
 
-        Backbone.history.navigate('stream/' + selected.join(','), true);
+        Backbone.history.navigate('stream/' + _.sample(selected, 4).join(','), true);
     },
 
     _update: function() {
