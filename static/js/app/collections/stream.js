@@ -21,6 +21,7 @@ var Stream = Backbone.Collection.extend({
     ping: function(stream) {
         $.ajax({
             url: 'http://debateabot.com/api/stream/ping',
+            type: 'POST',
             dataType: 'json',
             data: JSON.stringify({
                 stream_id: this.stream_id

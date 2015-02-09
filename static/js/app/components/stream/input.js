@@ -86,9 +86,8 @@ var Input = React.createClass({
             if (!bot || !bot.id) {
                 return;
             }
-
             var in_stream = !!this.props.stream.bots[bot.id];
-            if (in_stream && m.get('pending_time') <= Math.floor(+moment.utc() / 1000) - 10) {
+            if (in_stream && m.get('pending') && m.get('pending_time') <= Math.floor(+moment.utc() / 1000)) {
                 bot_names.push(bot.get('name'));
                 return true;
             }

@@ -16,7 +16,6 @@ var AvailableBots = React.createClass({
         }.bind(this));
 
         var available_items = _.map(available, function(bot) {
-            console.log(bot);
             return <AvailableBot bot={bot} stream={this.props.stream} />;
         }, this);
 
