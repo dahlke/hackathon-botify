@@ -2856,8 +2856,26 @@ html body a:hover {
 .header .header-share {
   margin-top: 14px;
   float: right;
-  width: 120px;
+  width: 100px;
   height: 30px;
+  overflow: hidden;
+}
+.header .header-share iframe {
+  width: 100px;
+  height: 30px;
+}
+.header .podcast {
+  float: right;
+  margin-top: 13px;
+}
+.header .podcast a {
+  color: #E5322F;
+}
+.header .podcast a:hover {
+  background-color: #fff;
+}
+.header .podcast a i {
+  margin-right: 3px;
 }
 .message {
   position: relative;

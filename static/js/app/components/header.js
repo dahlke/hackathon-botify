@@ -5,6 +5,11 @@ var Header = React.createClass({
     render: function() {
         return (
             <div className="header">
+                <div className="podcast">
+                    <a href="/podcast.html">
+                        <i className="fa fa-microphone" /> Infinite Podcast LIVE!
+                    </a>
+                </div>
                 <div className="header-share">
                     <iframe src="//www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fdebateabot.com&amp;layout=button_count&amp;appId=211879852169399" scrolling="no" frameborder="0" style={{ border: "none", overflow: "hidden" }} allowTransparency="true"></iframe>
                 </div>
