@@ -8,3 +8,5 @@ Demo: http://debateabot.com/
 Backend: https://github.com/carlsverre/botify-backend
 
 NLP Server: https://github.com/jvictor0/ballin-octo-wookie
+
+Built over 48 hours for the SF 2015 Comedy Hack Day Hackathon (http://www.comedyhackday.org/sf-2015)
