@@ -5,7 +5,7 @@ var Input = require('app/components/stream/input');
 var Messages = require('app/components/stream/messages');
 var Users = require('app/components/stream/users');
 
-var ChatRoom = React.createClass({
+var Stream = React.createClass({
 
     propTypes: {
         // stream
@@ -19,6 +19,7 @@ var ChatRoom = React.createClass({
 
     componentWillUnmount: function() {
         this._clear_pollers();
+        this.props.stream.reset();
     },
 
     render: function() {
@@ -49,4 +50,4 @@ var ChatRoom = React.createClass({
 
 });
 
-module.exports = ChatRoom;
+module.exports = Stream;

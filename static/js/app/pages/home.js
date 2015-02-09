@@ -3,8 +3,13 @@ var Backbone = require('backbone');
 var _ = require('lodash');
 var Input = require('app/components/stream/input');
 var Messages = require('app/components/stream/messages');
+var PickerList = require('app/components/picker/list');
 
 var Home = React.createClass({
+
+    propTypes: {
+        //stream
+    },
 
     getInitialState: function() {
         return {
@@ -28,23 +33,6 @@ var Home = React.createClass({
             return bot ? this._large_bot(bot) : undefined;
         }, this);
 
-        var split_point = Math.floor(this.props.bots.size() / 3);
-        var all_bots = {
-            left: [],
-            right: [],
-            center: []
-        };
-
-        _.each(this.props.bots.models, function(bot, i) {
-            if (i < split_point)  {
-                all_bots.left.push(this._bot_list_item(bot));
-            } else if (i < split_point * 2)  {
-                all_bots.right.push(this._bot_list_item(bot));
-            } else {
-                all_bots.center.push(this._bot_list_item(bot));
-            }
-        }, this);
-
         return (
             <div className="home-page row">
                 <div className="hero">
@@ -65,24 +53,10 @@ var Home = React.createClass({
                 </div>
                 <hr />
                 <div className="row">
-                    <h4>Or create your own!</h4>
+                    <h4>or create your own!</h4>
                 </div>
                 <div className="row">
-                    <div className="four columns">
-                        <ul className="botlist">
-                            {all_bots.left}
-                        </ul>
-                    </div>
-                    <div className="four columns">
-                        <ul className="botlist">
-                            {all_bots.center}
-                        </ul>
-                    </div>
-                    <div className="four columns">
-                        <ul className="botlist">
-                            {all_bots.right}
-                        </ul>
-                    </div>
+                    <PickerList stream={this.props.stream} bots={this.props.bots} />
                 </div>
             </div>
         );
@@ -99,7 +73,7 @@ var Home = React.createClass({
     },
 
     _goto_random_room: function() {
-
+        Backbone.history.navigate('stream/' + this.state.random_stream.join(','), true);
     },
 
     _update: function() {
@@ -116,15 +90,6 @@ var Home = React.createClass({
                     {bot.get('name')}
                 </span>
             </div>
-        );
-    },
-
-    _bot_list_item: function(bot) {
-        return (
-            <li key={'home-bot-list-item' + bot.id}>
-                <img src={'static/' + bot.get('photo_url')} />
-                {bot.get('name')}
-            </li>
         );
     }
 

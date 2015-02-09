@@ -5,17 +5,17 @@ var MessageModel = require('app/models/message');
 
 var Stream = Backbone.Collection.extend({
 
-    last_updated: 0,
 
     model: MessageModel,
 
     comparator: 'updated',
 
-    bots: {},
 
     initialize: function(models, options) {
         this._create();
         this.bot_ids = _.map(options.bot_ids, function(id) { return parseInt(id); });
+        this.bots = {};
+        this.last_updated = 0;
     },
 
     ping: function(stream) {

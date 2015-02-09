@@ -2707,6 +2707,9 @@ html body a {
 html body a:hover {
   background-color: black;
 }
+.home-page {
+  padding-bottom: 75px;
+}
 .home-page ul {
   list-style: none;
 }
@@ -2715,6 +2718,9 @@ html body a:hover {
   margin-left: auto;
   margin-right: auto;
   width: 250px;
+}
+.home-page .button-row {
+  text-align: center;
 }
 .home-page h1 {
   text-transform: uppercase;
@@ -2815,6 +2821,9 @@ html body a:hover {
 }
 .home-page .botlist li.selected {
   background-color: #ddd;
+}
+.home-page .botlist li.disabled {
+  opacity: 0.4;
 }
 .home-page .stickynav {
   min-height: 112px;
